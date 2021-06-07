@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: argoproj/rollouts-demo:red
+        image: argoproj/rollouts-demo:blue
         ports:
         - containerPort: 80
           name: web
