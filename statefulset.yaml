@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: web
+  annotations:
+    canary-statefulset: foo
+spec:
+  serviceName: "nginx"
+  replicas: 10
+  selector:
+    matchLabels:
+      app: nginx
+  updateStrategy:
+    rollingUpdate:
+      partition: 10
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: argoproj/rollouts-demo:yellow
+        ports:
+        - containerPort: 80
+          name: web
