@@ -4,6 +4,7 @@ metadata:
   name: web
   annotations:
     canary-statefulset: foo
+    canary/analysis-template: always-pass
 spec:
   serviceName: "nginx"
   replicas: 10
@@ -21,7 +22,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: argoproj/rollouts-demo:blue
+        image: argoproj/rollouts-demo:green
         ports:
         - containerPort: 80
           name: web
